@@ -10,43 +10,80 @@ defined('_JEXEC') or die;
 ?>
 <form method="post" action="<?php echo $action; ?>" id="mod_qlform_<?php echo $module->id;?>" class="form-validate" enctype="multipart/form-data">
 
-    <?php
-    if (1==$params->get('addPostToForm') AND isset($array_posts) AND is_array($array_posts)) : foreach ($array_posts as $k=>$v) :?>
-        <input type="hidden" name="former[<?php echo $k;?>]" value="<?php echo preg_replace("/\"/","",$v);?>" /><?php
-    endforeach; endif; ?>
-    <div style="display:none;"><input name="JabBerwOcky" type="text" value="" /></div>
-    <input name="formSent" type="hidden" value="1" />
-    <?php
-    foreach ($form->getFieldsets() as $fieldset):
-        $fields = $form->getFieldset($fieldset->name);
-        echo '<fieldset id="'.$fieldset->name.'"';
-        if (isset($fieldset->class)) echo ' class="'.$fieldset->class.'"';
-        echo '>';
-        if (isset($fieldset->label) AND ''!=$fieldset->label) echo '<legend id="legend'.$fieldset->name.'">'.$fieldset->label.'</legend>';
-		echo '<dl>';
-        foreach($fields as $field):
-            if ($field->hidden): echo $field->input;
-            else: ?>
-                <dt class="<?php echo $field->id;?>">
-                    <?php echo preg_replace('~}}~','>',preg_replace('~{{~','<',$field->label)); ?>
+    <div style="display:none;"><input name="JabBerwOcky" type="text" value=""></div>
+    <input name="formSent" type="hidden" value="1">
+    <fieldset id="fieldset1">
+        <dl class="row">
+            <div class="col-sm-6">
+                <!--            <dt class="jform_name col-md-3">-->
+                <!--                <label id="jform_name-lbl" for="jform_name" class="required">-->
+                <!--                    Name<span class="star">&nbsp;*</span></label>-->
+                <!--            </dt>-->
+                <dd class="jform_name">
+                    <input type="text" name="jform[name]" id="jform_name" value="" placeholder="Full Name"
+                           class="required" size="50"
+                           required="required" aria-required="true"></dd>
+                <dt class="jform_email">
+                    <!--                    <label id="jform_email-lbl" for="jform_email" class="required">-->
+                    <!--                        Email<span class="star">&nbsp;*</span></label>-->
                 </dt>
-                <dd class="<?php echo $field->id;?>">
-                    <?php echo $field->input;?>
-                </dd>
-                <?php endif;
-        endforeach;
-        echo '</dl></fieldset>';
-    endforeach; ?>
-    <dl>
-        <?php if (1==$showCaptacha) : ?>
-        <dt class="captcha">
-            <?php if(''!=$params->get('captchalabel')) echo '<span>'.$params->get('captchalabel').'</span><br />';?>
-            <img id="captcha" src="<?php echo $image;?>" /></dt>
-        <dd class="captcha"><?php if(''!=$params->get('captchadesc')) echo '<span>'.$params->get('captchadesc').'</span><br />';?><input type="text" name="captcha" value="" /></dd>
-        <?php endif; ?>
-        <dt class="submit"></dt><dd class="submit"><input class="submit" type="submit" value="<?php echo $submit; ?>" /></dd>
-    </dl>
-    <?php if (1==$fieldModuleId) : ?>
-    <input type="hidden" value="<?php echo $moduleId;?>" name="moduleId" />
-    <?php endif; ?>
+                <dd class="jform_email">
+                    <input type="email" name="jform[email]" class="validate-email required" placeholder="E-mail" id="jform_email" value=""
+                           size="50" required="required" aria-required="true"></dd>
+                <dt class="jform_subject">
+                    <!--                    <label id="jform_subject-lbl" for="jform_subject" class="">-->
+                    <!--                        Subject</label>-->
+                </dt>
+                <dd class="jform_subject">
+                    <input type="text" name="jform[subject]" id="jform_subject" value="" placeholder="Subject" size="50"></dd>
+
+
+                <fieldset id="qlformc9f0f895fb98ab9159f51fd0297e236d" class="additionalFields">
+                    <dl>
+                        <dt class="jform_sendcopy">
+                            <label id="jform_sendcopy-lbl" for="jform_sendcopy" class="">
+                                Send copy to me</label>
+                        </dt>
+                        <dd class="jform_sendcopy">
+                            <input type="checkbox" name="jform[sendcopy]" id="jform_sendcopy" value="1" checked=""></dd>
+                    </dl>
+                </fieldset>
+                <dl  style="padding-left: 0px;">
+                    <?php if (1 == $showCaptacha) : ?>
+                        <div class="control-group captcha">
+                            <?php if ('' != $params->get('captchalabel')) : ?>
+                                <label class="control-label" for="captcha"><?php echo $params->get('captchalabel'); ?></label>
+                            <?php endif; ?>
+                            <div class="controls">
+
+                                <?php if ('' != $params->get('captchadesc')) echo '<span>' . $params->get('captchadesc') . '</span><br />'; ?>
+                                <input class="form-control input-lg" type="text" name="captcha" value=""/><br/>
+                                <img id="captcha" src="<?php echo $image; ?>"/>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                </dl>
+
+
+
+            </div>
+
+            <div class="col-sm-6">
+                <!--                <dt class="jform_message">-->
+                <!--                    <label id="jform_message-lbl" for="jform_message" class="required invalid">-->
+                <!--                        Message<span class="star">&nbsp;*</span></label>-->
+                <!--                </dt>-->
+                <dd class="jform_message">
+                <textarea name="jform[message]" id="jform_message" cols="50" rows="20" placeholder="Message" class="required invalid"
+                          required="required" aria-required="true" aria-invalid="true"></textarea></dd>
+
+                <dt class="submit"></dt>
+                <dd class="submit"><input class="submit" type="submit" value="Submit"></dd>
+
+            </div>
+        </dl>
+    </fieldset>
+
+
+    <input type="hidden" value="97" name="moduleId">
 </form>

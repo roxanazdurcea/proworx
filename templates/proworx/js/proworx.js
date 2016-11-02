@@ -10,14 +10,6 @@ jQuery(document).ready(function () {
         slidesToScroll: 4,
         arrows: true,
         infinite: true,
-        
-        
-        
-        
-        
-
-        
-        
         responsive: [
             {
                 breakpoint: 1024,
@@ -38,13 +30,17 @@ jQuery(document).ready(function () {
             {
                 breakpoint: 480,
                 settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
+                    slidesToShow: 2,
+                    slidesToScroll: 2
                 }
             }
         ]
     });
     // end of slick slider
-    
+
+
+
+
+
     
     });

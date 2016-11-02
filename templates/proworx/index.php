@@ -169,13 +169,13 @@ else
 		<div class="container-fluid<?php echo ($params->get('fluidContainer') ? '-fluid' : ''); ?>">
 			
           <!-- top bar -->
-			<div id="top-bar" style="width: 100%; background-color: #293a67;">
+			<div id="top-bar" style="width: 100%; background-color: #293a67;" dir="ltr">
 				<div class="container" style="padding-top: 10px !important; padding-bottom: 10px !important; padding-right: 10px !important; padding-left: 10px !important;">
 					<div class="row vertical-align">
-                      	<div class="col-xs-7">
+                      	<div class="col-xs-7 col-sm-10 col-md-11">
                             <jdoc:include type="modules" name="social-pos" style="none" />
                         </div>
-                        <div class="col-xs-5">
+                        <div class="col-xs-5 col-sm-2 col-md-1">
                             <jdoc:include type="modules" name="lang-pos" style="none" />
                         </div>
                     </div>
